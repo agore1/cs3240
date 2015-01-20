@@ -6,6 +6,12 @@ CC=g++
 CFLAGS=-c -Wall
 LFLAGS=-Wall
 
+computeK: computeK.o Point.o
+	$(CC) $(LFLAGS) computeK.o Point.o -o computeK.out
+
+computeK.o: computeK.cpp
+	$(CC) $(CFLAGS) computeK.cpp
+
 scratch:scratch.o Point.o
 	$(CC) $(LFLAGS) scratchwork.o Point.o -o scratch.out
 
@@ -16,4 +22,4 @@ Point.o: Point.cpp Point.h
 	$(CC) $(CFLAGS) Point.cpp
 
 clean:
-	\rm *.o 
+	\rm *.o computeK.out scratch.out

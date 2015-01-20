@@ -1,0 +1,12 @@
+Breaking down the problem:
+*Read some data from command line
+*Read the input file
+*Compute the nearest neighbors
+*Print out the results of the nearest neighbors
+
+The data point class should have: 
+*Members for the x and y fields - floats
+*Member for the category
+
+Assignment file problems: 
+Doesn't give much info on what kind of category names to expect: will they include spaces, etc? 

@@ -7,7 +7,15 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <stdlib.h>
 using namespace std;
+
+//Global vars - change for production
+//Vector in which points from file will be stored
+vector<Point*> allPoints;
+
+//Forward function declarations
+void prepForExit();
 
 int main(int argc, char* argv[]){
 	//Prompt user for values of K and numFromFile. 
@@ -21,24 +29,55 @@ int main(int argc, char* argv[]){
 	string fileName; 
 	cin >> fileName;
 
+	//Vector in which points from file will be stored
+	vector<Point*> allPoints;
 	//Attempt to open the file
 	string line;
 	ifstream myfile(fileName.c_str());
 	if(myfile.is_open()){
-		while(getline(myfile, line)){
-			istringstream iss(line);
-			string sub;
-			while(iss >> sub){
-				cout << "Substring: " << sub << endl;	
+		//Variables used to hold converted data
+		string category;
+		float tempX;
+		float tempY;
+		//read numFromFile lines from the file
+		for(int i=0; i<numFromFile; i++){
+			if(getline(myfile, line)){
+				//Convert this line into a Point
+				istringstream iss(line);
+				string sub;
+				iss >> sub; 
+				string category = sub;
+				iss >> sub;
+				tempX = stof(sub);
+				iss>> sub;
+				tempY = stof(sub);
+
+				//create a new point
+				Point * newPoint = new Point(tempX, tempY, category);
+				allPoints.push_back(newPoint);
+			}else{
+				cout << "Something went wrong getting a line from the file. Exiting now." << endl;
+				prepForExit();
 			}
-			cout << "The whole line was: " << line << "\n";
 		}
 		myfile.close();
+
+		//Test reading the Points
+		for(vector<Point*>::iterator it = allPoints.begin(); it != allPoints.end(); ++it){
+		cout << "The category is: " << (*it)->getCategory() << endl;
+	}
+
 	}else{
 		cout << "unable to open file.\n";
 	}
 
-	
+	prepForExit();
+}
 
-
+void prepForExit(){
+	//Free all the memory of Points in the vector
+	for(vector<Point*>::iterator it = allPoints.begin(); it != allPoints.end(); ++it){
+		delete *it;
+	}
+	exit();
 }

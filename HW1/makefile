@@ -3,8 +3,8 @@
 
 CC=g++
 #Flags are compile but don't link, warn all
-CFLAGS=-c -Wall
-LFLAGS=-Wall
+CFLAGS=-c -Wall -std=c++11
+LFLAGS=-Wall -std=c++11
 
 computeK: computeK.o Point.o
 	$(CC) $(LFLAGS) computeK.o Point.o -o computeK.out

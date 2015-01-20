@@ -5,9 +5,28 @@
 #include "Point.h"
 #include <fstream>
 #include <sstream>
+#include <vector>
 using namespace std;
 
 int main(int argc, char* argv[]){
+	vector<Point*> allPoints; 
+	Point* point1 = new Point(1.0, 2.0, "TestA");
+	allPoints.push_back(point1);
+	Point* point2 = new Point(3.0, 4.0, "TestB");
+	allPoints.push_back(point2);
+	cout <<"The value of point2 is: " << point2->getCategory() << endl;
+
+	for(int i = 0; i < 2; i++){
+		cout << allPoints[i]->getCategory() << endl;
+	}
+	//Free the Points in allPoints
+	for(vector<Point*>::iterator it = allPoints.begin(); it != allPoints.end(); ++it){
+		delete *it;
+	}
+
+	cout <<"The value of point2 is: " << point2->getCategory() << endl;
+
+
 	string line;
 	ifstream myfile("testData.txt");
 	if(myfile.is_open()){

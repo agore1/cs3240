@@ -13,7 +13,8 @@ The data point class should have:
 
 Assignment file problems: 
 Doesn't give much info on what kind of category names to expect: will they include spaces, etc? 
-Doesn't give an example file. 
+Doesn't give an interesting/exhaustive example file. 
+Doesn't actually describe the shell script, just mentions it. 
 
 Overall problem solving:
 *For all points in  allPoints, calculate it's distance from the input point
@@ -24,3 +25,9 @@ Overall problem solving:
 	*make a dictionary 
 	*read category, increment value
 *Clear the distances, then begin again. 
+
+scratch:scratch.o Point.o
+	$(CC) $(LFLAGS) scratchwork.o Point.o -o scratch.out
+
+scratch.o: scratchwork.cpp
+	$(CC) $(CFLAGS) scratchwork.cpp 

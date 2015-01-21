@@ -66,11 +66,6 @@ int main(int argc, char* argv[]){
 		}
 		myfile.close();
 
-		//Test reading the Points
-		for(vector<Point*>::iterator it = allPoints.begin(); it != allPoints.end(); ++it){
-		cout << "The category is: " << (*it)->getCategory() << endl;
-		}
-
 	}else{
 		cout << "Unable to open file.\n";
 		return 0;
@@ -80,9 +75,6 @@ int main(int argc, char* argv[]){
 	//Scan for input
 	string input = "";
 	string sub = "0.0";
-	// getline(cin, input);
-	// cin >> input;
-	// cout << input << endl;
 	cin.ignore();	//clear newline character from cin, which can confuse getline. 
 	while(getline(cin, input)){
 		if(input == "1.0 1.0"){
@@ -107,27 +99,38 @@ int main(int argc, char* argv[]){
 
 		//Print K nearest points and add to dictionary
 		map<string, int> Votes;
+		map<string, float> avgDist;
 		for(int i=0; i<k; i++){
 			cout << allPoints[i]->getCategory() << " " << allPoints[i]->getX() << " " << allPoints[i]->getY()<< " " << allPoints[i]->getDist() << endl;
 			if(Votes.find(allPoints[i]->getCategory()) == Votes.end()){		//if the category isn't present
 				Votes[allPoints[i]->getCategory()] = 1;
+				avgDist[allPoints[i]->getCategory()] = allPoints[i]->getDist();
 				cout << "Adding category: " << allPoints[i]->getCategory() << endl;
 			}else{
 				Votes[allPoints[i]->getCategory()]++;
+				avgDist[allPoints[i]->getCategory()] += allPoints[i]->getDist();
 				cout << "The value of " << allPoints[i]->getCategory() << " was incremented to : " << Votes[allPoints[i]->getCategory()] << endl;
 			}
 		}
+
 
 		//Vote on K nearest points
 		string maxCategory;
 		int max = 0;
 		for( map<string, int>::iterator voteIt = Votes.begin(); voteIt != Votes.end(); ++voteIt){
+			//finish calculating the average distance
+			avgDist[(*voteIt).first] /= (*voteIt).second;
 			if((*voteIt).second >= max){
 				maxCategory = (*voteIt).first;
 				max = (*voteIt).second;
 			}
 		}
-		cout << "With " << max << " votes, the max category was: " << maxCategory << endl; 
+		cout << "With " << max << " votes, the nearest category was: " << maxCategory << endl; 
+
+		//Print the average distances for each category
+		for( map<string, float>::iterator avgIt = avgDist.begin(); avgIt != avgDist.end(); ++avgIt){
+			cout << "Average distance to : " << (*avgIt).first << " items: " << (*avgIt).second << endl;
+		}
 
 		//clear the Distance attributes of all the points to prepare for next input
 		for(vector<Point*>::iterator it = allPoints.begin(); it != allPoints.end(); ++it){

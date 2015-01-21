@@ -9,17 +9,27 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
+	string input;
+	getline(cin, input);
+	cout << input <<endl;
+	
 	vector<Point*> allPoints; 
-	Point* point1 = new Point(1.0, 2.0, "TestA");
+	Point* point1 = new Point(1.0, 1.0, "TestA");
 	allPoints.push_back(point1);
 	Point* point2 = new Point(3.0, 4.0, "TestB");
 	allPoints.push_back(point2);
 	cout <<"The value of point2 is: " << point2->getCategory() << endl;
 
 	for(int i = 0; i < 2; i++){
-		cout << allPoints[i]->getCategory() << endl;
+		cout << allPoints[i]->getCategory() << allPoints[i]->getDist() << endl;
+
 	}
+
+	allPoints[0]->computeDist(2.0, 2.0);
+	cout << "The distance of the point is: " << allPoints[0]->getDist();
+
 	//Free the Points in allPoints
+	cout << "Freeing points now." << endl;
 	for(vector<Point*>::iterator it = allPoints.begin(); it != allPoints.end(); ++it){
 		delete *it;
 	}

@@ -14,3 +14,13 @@ The data point class should have:
 Assignment file problems: 
 Doesn't give much info on what kind of category names to expect: will they include spaces, etc? 
 Doesn't give an example file. 
+
+Overall problem solving:
+*For all points in  allPoints, calculate it's distance from the input point
+*Sort them by their distance
+*Or keep a running list of the K nearest ones, and upon calculating a distance, see if it's less than the largest value currently in the list. 
+*Print the K nearest ones
+*Vote with the K nearest ones
+	*make a dictionary 
+	*read category, increment value
+*Clear the distances, then begin again. 

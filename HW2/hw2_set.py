@@ -16,7 +16,7 @@ class OurSet:
         else:
             return False
 
-    def add_list(self, list):
+    def addList(self, list):
         """Attempt to add all items in list, return true if at least one is added."""
         result = False
         for i in list:
@@ -61,8 +61,8 @@ def testadd():
     test_set = OurSet()
     assert True == test_set.add(3)
     assert False == test_set.add(3)
-    assert True == test_set.add_list([1, 3])
-    assert False == test_set.add_list([1, 3])
+    assert True == test_set.addList([1, 3])
+    assert False == test_set.addList([1, 3])
     test_set.add(2)
     assert "<3, 1, 2>" == test_set.__str__()
     assert 3 == len(test_set)
@@ -73,14 +73,12 @@ def testadd():
     except ValueError:
         print("Iterator not working.")
 
-    # print(test_set.__str__())
-
 
 def testunion():
     set1 = OurSet()
     set2 = OurSet()
-    set1.add_list([1, 2, 3])
-    set2.add_list([3, 4, 5])
+    set1.addList([1, 2, 3])
+    set2.addList([3, 4, 5])
     set3 = set1.union(set2)
     assert "<1, 2, 3, 4, 5>" == set3.__str__()
     print(set3)
@@ -89,8 +87,8 @@ def testunion():
 def testintersection():
     set1 = OurSet()
     set2 = OurSet()
-    set1.add_list([1, 2, 3])
-    set2.add_list([3, 4, 5])
+    set1.addList([1, 2, 3])
+    set2.addList([3, 4, 5])
     set3 = set2.intersection(set1)
     assert "<3>" == set3.__str__()
     print(set3)

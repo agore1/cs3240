@@ -1,10 +1,10 @@
 __author__ = 'horton'
 
-from queue import Queue
+from ourqueue import Ourqueue
 
 def test_front_empty():
     """Q1: test calling front on empty queue"""
-    q1 = Queue()
+    q1 = Ourqueue()
     res = q1.front()
     assert res == None
 
@@ -20,4 +20,4 @@ def test_remove_size1():
     q1 = Queue([1])
     res = q1.remove()
     assert res == 1
-    assert len(q1) == 1
+    assert len(q1) == 0

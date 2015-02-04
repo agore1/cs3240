@@ -1,6 +1,6 @@
 __author__ = 'horton'
 
-class Queue:
+class Ourqueue:
 
     def __init__(self, init_values=[]):
         self.values = init_values

@@ -3,6 +3,7 @@ __author__ = 'ayg9fh'
 import unittest
 from HW3.graph import Graph
 
+
 class TestGraph(unittest.TestCase):
     """Tests for the Graph class."""
 

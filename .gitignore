@@ -1,4 +1,6 @@
 #Databases
 *.db
 
+#Coverage and tests
+.coverage
 
